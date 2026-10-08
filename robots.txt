@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://melihcrt.github.io/iceflow/sitemap.xml
