@@ -20,9 +20,9 @@
 /* Concept : deux températures. L'air chaud (heat) traverse un bloc nid d'abeille (ice) et ressort froid.
    Grille éditoriale sur fond glacier, titres Archivo très étendus, annotations techniques en mono. */
 :root{
-  --bg:#F1F5F8; --surface:#FFFFFF; --frost:#E4EFF6;
-  --ink:#0A1B25; --ink-2:#4B5E6A; --line:#D3DDE4;
-  --ice:#1A78BC; --ice-soft:#CBE3F3; --heat:#D9592A; --heat-soft:#F7DED2;
+  --bg:#FBFDFE; --surface:#FFFFFF; --frost:#EDF6FB; color-scheme:light;
+  --ink:#0A1B25; --ink-2:#4B5E6A; --line:#DDE7ED;
+  --ice:#1A78BC; --ice-soft:#D6EBF8; --heat:#D9592A; --heat-soft:#F7DED2;
   --ph:#9A5B00; --ph-bg:#FFF4DF;
   --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
   --f-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -32,12 +32,6 @@
   --r:14px; --ease:cubic-bezier(.2,.7,.1,1);
   --gutter:max(16px,4.5vw);
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#06121A; --surface:#0C1C26; --frost:#0F2532; --ink:#E3ECF1; --ink-2:#93A8B5; --line:#1C3240;
-  --ice:#6EC4F3; --ice-soft:#123349; --heat:#F08A55; --heat-soft:#3A2016; --ph:#F2B65A; --ph-bg:#2A1F0E; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#06121A; --surface:#0C1C26; --frost:#0F2532; --ink:#E3ECF1; --ink-2:#93A8B5; --line:#1C3240;
-  --ice:#6EC4F3; --ice-soft:#123349; --heat:#F08A55; --heat-soft:#3A2016; --ph:#F2B65A; --ph-bg:#2A1F0E; color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -70,8 +64,6 @@ p{margin:0}
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn.ghost:hover{border-color:var(--ink)}
 .btn.ice{--b:var(--ice);--t:#fff}
-:root[data-theme="dark"] .btn.ice{--t:#04121B}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.ice{--t:#04121B}}
 .btn[disabled]{opacity:.55;cursor:not-allowed;transform:none}
 .link{color:var(--ink);text-decoration:none;background:linear-gradient(var(--ice),var(--ice)) 0 100%/0 1.5px no-repeat;transition:background-size .4s var(--ease);padding-bottom:2px;font-weight:600}
 .link:hover{background-size:100% 1.5px}
@@ -205,24 +197,21 @@ section{padding-block:clamp(4.5rem,10vw,8.5rem)}
 /* Bloc distribution (accueil) */
 .buy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem}
 .buy-card{border:1px solid var(--line);border-radius:calc(var(--r) + 4px);padding:clamp(1.6rem,3.5vw,2.6rem);display:grid;gap:1.2rem;align-content:space-between;background:var(--surface);min-height:280px;position:relative;overflow:hidden;min-width:0}
-.buy-card.dark{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.buy-card.dark .muted{color:color-mix(in srgb,var(--bg) 70%,var(--ink))}
-.buy-card.dark .btn{--b:var(--bg);--t:var(--ink)}
+.buy-card.dark{background:linear-gradient(160deg,var(--ice-soft),var(--frost));border-color:color-mix(in srgb,var(--ice) 25%,var(--line))}
 .amz{display:flex;align-items:center;gap:.8rem}
 .amz-word{font:700 1.7rem/1 var(--f-body);letter-spacing:-.02em}
 .amz-smile{display:block;width:72px;height:12px}
 @media (max-width:760px){.buy{grid-template-columns:1fr}}
 
 /* Final */
-.finale{position:relative;overflow:hidden;background:var(--ink);color:var(--bg);border-radius:clamp(18px,3vw,32px);padding:clamp(3rem,8vw,7rem) clamp(1.4rem,5vw,5rem);display:grid;gap:2rem}
-.finale canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
+.finale{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--ice-soft),var(--frost) 55%,var(--surface));color:var(--ink);border:1px solid var(--line);border-radius:clamp(18px,3vw,32px);padding:clamp(3rem,8vw,7rem) clamp(1.4rem,5vw,5rem);display:grid;gap:2rem}
+.finale canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.7}
 .finale > *:not(canvas){position:relative}
 .finale .lines{font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:clamp(1.7rem,4.6vw,3.9rem);letter-spacing:-.035em;line-height:1.05;display:grid;gap:.15em}
-.finale .lines span{color:color-mix(in srgb,var(--bg) 55%,var(--ink))}
-.finale .lines strong{color:var(--bg)}
-.finale .lines em{font-style:normal;color:color-mix(in srgb,var(--ice) 75%,var(--bg))}
-.finale .btn{--b:var(--bg);--t:var(--ink)}
-.finale .btn.ghost{background:transparent;color:var(--bg);border-color:color-mix(in srgb,var(--bg) 35%,transparent)}
+.finale .lines span{color:var(--ink-2)}
+.finale .lines strong{color:var(--ink)}
+.finale .lines em{font-style:normal;color:var(--ice)}
+.finale .btn.ghost{background:var(--surface);color:var(--ink);border-color:var(--line)}
 
 /* Footer */
 footer{border-top:1px solid var(--line);margin-top:clamp(4rem,8vw,7rem);padding-block:3.5rem 2.5rem}
